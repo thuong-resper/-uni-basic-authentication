@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000/api
+
+# @name Login
+
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "username": "thuongresper",
+  "password": "Texx#1312"
+}
+
+###
+
+# @name register
+POST {{baseUrl}}/user/register
+Content-Type: application/json
+
+{
+  "username": "thuongrespe",
+  "password": "Texx#1312",
+  "salt": "thuong"
+}
