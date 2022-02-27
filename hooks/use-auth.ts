@@ -1,15 +1,8 @@
-import Cookies from 'js-cookie'
 import { User } from 'models'
 import useSWR from 'swr'
 
 export function useAuth() {
-	const accessTokenExists = Boolean(Cookies.get('access_token'))
-
-	const {
-		data: profile,
-		error,
-		mutate,
-	} = useSWR<User>(accessTokenExists ? '/api/user/profile' : null)
+	const { data: profile, error, mutate } = useSWR<User>('/api/user/profile')
 	const firstLoading = profile === undefined && error === undefined
 
 	const logout = error && error.status === 400
