@@ -1,20 +1,20 @@
 import { Alert, Box, Button, Stack } from '@mui/material'
-import { authApi } from 'apis/auth-api'
 import { Auth } from 'components/common'
 import { MainLayout } from 'components/layout'
 import { useAuth } from 'hooks'
 import { NextPageWithLayout } from 'models/common'
-import Router from 'next/router'
 import React from 'react'
 
 const Home: NextPageWithLayout = () => {
-	const { profile } = useAuth()
+	const { profile, logout } = useAuth()
 
-	const logoutHandler = () => {
-		Router.replace('/login')
-		authApi.logout()
+	async function logoutHandler() {
+		try {
+			await logout()
+		} catch (error) {
+			console.log('failed to logout', error)
+		}
 	}
-
 	return (
 		<Auth>
 			<Stack
